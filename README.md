@@ -5,8 +5,8 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/rickstaa/action-black?logo=github\&sort=semver)](https://github.com/rickstaa/action-black/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github\&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
-> 🚀 **IMPORTANT: The official psf/black action has been released!**
-> Since `psf/black` has been released, the action in this repository is not trivial anymore. Therefore, you are advised to use the [official black](https://black.readthedocs.io/en/stable/integrations/github_actions.html) action. Some features in this action are not in the official action. The differences between the two actions are documented in <https://github.com/rickstaa/action-black/issues/10>. Please open a [pull request](https://github.com/rickstaa/action-black/pulls) if you think features are missing.
+> [!IMPORTANT]\
+> **The official psf/black action has been released! 🚀** - Because of this, this repository's action is no longer trivial. Therefore, you are advised to use the [official black](https://black.readthedocs.io/en/stable/integrations/github_actions.html) action. Some features in this action are not in the official action. The differences between the two actions are documented in <https://github.com/rickstaa/action-black/issues/10>. If you think features are missing, please open a [pull request](https://github.com/rickstaa/action-black/pulls).
 
 This action runs the [black formatter](https://github.com/psf/black) to check/format your python code on a push or pull request. It is similar to [reviewdog/action-black](https://github.com/reviewdog/action-black) that can annotate the black changes required with [Reviewdog](https://github.com/reviewdog/reviewdog). However, this version also allows you to format the code using GitHub actions (see #advanced-use-cases).
 
@@ -22,7 +22,7 @@ jobs:
     name: runner / black formatter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: rickstaa/action-black@v1
         with:
           black_args: ". --check"
@@ -58,7 +58,7 @@ jobs:
     name: runner / black
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Check files using the black formatter
         uses: rickstaa/action-black@v1
         id: action_black
@@ -83,7 +83,7 @@ jobs:
     name: runner / black
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Check files using the black formatter
         uses: rickstaa/action-black@v1
         id: action_black
@@ -91,7 +91,7 @@ jobs:
           black_args: "."
       - name: Create Pull Request
         if: steps.action_black.outputs.is_formatted == 'true'
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "Format Python code with psf/black push"
